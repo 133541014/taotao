@@ -37,6 +37,7 @@
   <servlet>
     <servlet-name>taotao-manager</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
     <!-- contextConfigLocation不是必须的， 如果不配置contextConfigLocation， springmvc的配置文件默认在：WEB-INF/servlet的name+"-servlet.xml" -->
     <init-param>
       <param-name>contextConfigLocation</param-name>
