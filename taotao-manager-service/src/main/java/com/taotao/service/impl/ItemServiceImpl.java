@@ -1,5 +1,6 @@
 package com.taotao.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.taotao.mapper.TbItemMapper;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemExample;
@@ -23,4 +24,10 @@ public class ItemServiceImpl implements ItemService {
         List<TbItem> tbItems = tbItemMapper.selectByExample(tbItemExample);
         return tbItems.get(0);
     }
+
+    @Override
+    public JSONObject getItemList(int page, int rows) {
+        return null;
+    }
+
 }
