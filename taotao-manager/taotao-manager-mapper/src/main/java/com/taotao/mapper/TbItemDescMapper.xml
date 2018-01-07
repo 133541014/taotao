@@ -3,6 +3,7 @@
 <mapper namespace="com.taotao.mapper.TbItemDescMapper" >
   <resultMap id="BaseResultMap" type="com.taotao.pojo.TbItemDesc" >
     <id column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="item_desc" property="itemDesc"/>
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    item_id, created, updated
+    item_id, item_desc,created, updated
   </sql>
   <sql id="Blob_Column_List" >
     item_desc

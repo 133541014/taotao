@@ -14,6 +14,22 @@
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="ItemResultMap" type="com.taotao.vo.ItemVO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="sell_point" property="sellPoint" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="name" property="catName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -302,4 +318,23 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getItemList" resultMap="ItemResultMap">
+    SELECT
+      ti.id,
+      ti.title,
+      ti.sell_point,
+      ti.price,
+      ti.num,
+      ti.barcode,
+      ti.image,
+      ti.cid,
+      tic.`name`,
+      ti. STATUS,
+      ti.created,
+      ti.updated
+    FROM
+        tb_item ti
+    LEFT JOIN tb_item_cat tic ON ti.cid = tic.id
+  </select>
 </mapper>

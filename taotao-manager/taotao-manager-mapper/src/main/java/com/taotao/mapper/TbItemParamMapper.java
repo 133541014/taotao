@@ -2,6 +2,7 @@ package com.taotao.mapper;
 
 import com.taotao.pojo.TbItemParam;
 import com.taotao.pojo.TbItemParamExample;
+import com.taotao.vo.ItemParamVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -34,4 +35,11 @@ public interface TbItemParamMapper {
     int updateByPrimaryKeyWithBLOBs(TbItemParam record);
 
     int updateByPrimaryKey(TbItemParam record);
+
+    /**
+     * @Description:查询商品规格参数列表
+     * @Author:WangYichao
+     * @Date:2018/1/7 11:58
+     */
+    List<ItemParamVO> getItemParamList();
 }

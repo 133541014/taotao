@@ -65,7 +65,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var itemEditEditor ;
+	var  itemEditEditor ;
 	$(function(){
 		//实例化编辑器
 		itemEditEditor = TAOTAO.createEditor("#itemeEditForm [name=desc]");

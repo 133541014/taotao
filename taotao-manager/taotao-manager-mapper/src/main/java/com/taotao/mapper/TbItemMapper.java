@@ -2,6 +2,7 @@ package com.taotao.mapper;
 
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemExample;
+import com.taotao.vo.ItemVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public interface TbItemMapper {
     int updateByPrimaryKeySelective(TbItem record);
 
     int updateByPrimaryKey(TbItem record);
+
+    List<ItemVO> getItemList();
+
 }
