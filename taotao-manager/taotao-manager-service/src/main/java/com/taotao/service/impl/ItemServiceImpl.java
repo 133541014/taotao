@@ -10,6 +10,7 @@ import com.taotao.common.util.FtpUtil;
 import com.taotao.common.util.IDUtils;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamItemMapper;
 import com.taotao.mapper.TbItemParamMapper;
 import com.taotao.pojo.*;
 import com.taotao.service.ItemService;
@@ -44,6 +45,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemParamMapper tbItemParamMapper;
+
+    @Autowired
+    private TbItemParamItemMapper tbItemParamItemMapper;
 
     @Value("${ftp.host}")
     private String host;
@@ -140,7 +144,7 @@ public class ItemServiceImpl implements ItemService {
      * @Date:2018/1/4 20:58
      */
     @Override
-    public TaotaoResult addItem(TbItem tbItem, String desc) throws Exception {
+    public TaotaoResult addItem(TbItem tbItem, String desc, String itemParams) throws Exception {
 
         Long id = IDUtils.genItemId();
 
@@ -154,17 +158,10 @@ public class ItemServiceImpl implements ItemService {
 
         tbItemMapper.insert(tbItem);
 
-        TbItemDesc tbItemDesc = new TbItemDesc();
-
-        tbItemDesc.setItemId(id);
-
-        tbItemDesc.setItemDesc(desc);
-
-        tbItemDesc.setCreated(new Date());
-
-        tbItemDesc.setUpdated(new Date());
-
-        tbItemDescMapper.insert(tbItemDesc);
+        //添加商品描述
+        addItemDesc(id, desc);
+        //添加商品规格参数信息
+        addItemParamItem(id, itemParams);
 
         return TaotaoResult.ok();
     }
@@ -193,5 +190,34 @@ public class ItemServiceImpl implements ItemService {
         List<TbItemDesc> itemDescs = tbItemDescMapper.selectByExample(tbItemDescExample);
 
         return TaotaoResult.ok(itemDescs.get(0));
+    }
+
+    /**
+     * @Description:添加商品规格参数信息
+     * @Author:WangYichao
+     * @itemId 商品编号
+     * @itemParams 商品规格参数信息
+     * @Date:2018/1/28 16:27
+     */
+    private void addItemParamItem(Long itemId, String itemParams) {
+        TbItemParamItem itemParamItem = new TbItemParamItem();
+        itemParamItem.setItemId(itemId);
+        itemParamItem.setParamData(itemParams);
+        itemParamItem.setCreated(new Date());
+        itemParamItem.setUpdated(new Date());
+        tbItemParamItemMapper.insert(itemParamItem);
+    }
+
+    private void addItemDesc(Long itemId, String desc) {
+        TbItemDesc tbItemDesc = new TbItemDesc();
+
+        tbItemDesc.setItemId(itemId);
+
+        tbItemDesc.setItemDesc(desc);
+
+        tbItemDesc.setCreated(new Date());
+
+        tbItemDesc.setUpdated(new Date());
+        tbItemDescMapper.insert(tbItemDesc);
     }
 }

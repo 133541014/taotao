@@ -274,6 +274,7 @@
         tb_item ti
     LEFT JOIN tb_item_cat tic ON ti.cid = tic.id
     LEFT JOIN tb_item_param tip ON tic.id = tip.item_cat_id
+    ORDER BY tip.updated DESC ,tip.created DESC
   </select>
 
 

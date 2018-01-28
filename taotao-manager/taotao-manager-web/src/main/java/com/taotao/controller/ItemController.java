@@ -3,6 +3,8 @@ package com.taotao.controller;
 import com.taotao.common.pojo.EUDataGridModel;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.pojo.TbItem;
+import com.taotao.pojo.TbItemParam;
+import com.taotao.service.ItemParamService;
 import com.taotao.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,9 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private ItemParamService ItemParamService;
 
     /**
      * @Description:测试接口
@@ -54,12 +59,12 @@ public class ItemController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public TaotaoResult addItem(TbItem tbItem, String desc) {
+    public TaotaoResult addItem(TbItem tbItem, String desc,String itemParams) {
 
         TaotaoResult result = null;
         try {
 
-            result = itemService.addItem(tbItem, desc);
+            result = itemService.addItem(tbItem, desc,itemParams);
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -88,4 +93,30 @@ public class ItemController {
 
     }
 
+    /**
+     * @Description:根据分类id查询规格参数
+     * @Author:WangYichao
+     * @Date:2018/1/27 21:11
+     */
+    @RequestMapping("/param/query/itemcatid/{catId}")
+    @ResponseBody
+    public TaotaoResult getParamByItemCatId(@PathVariable(value = "catId")Long catId){
+
+        TbItemParam tbItemParam = ItemParamService.getItemParamByCatId(catId);
+        if(tbItemParam==null){
+            return new TaotaoResult();
+        }
+        return TaotaoResult.ok(tbItemParam);
+    }
+
+    @RequestMapping("/param/save/{catId}")
+    @ResponseBody
+    public TaotaoResult saveItemParam(@PathVariable(value = "catId")Long catId,String paramData){
+
+        TbItemParam tbItemParam = new TbItemParam();
+        tbItemParam.setItemCatId(catId);
+        tbItemParam.setParamData(paramData);
+        ItemParamService.addItemParam(tbItemParam);
+        return TaotaoResult.ok();
+    }
 }

@@ -21,7 +21,7 @@ public interface ItemService {
      * @Author:WangYichao
      * @Date:2018/1/6 16:24
      */
-    TaotaoResult addItem(TbItem tbItem, String desc) throws Exception;
+    TaotaoResult addItem(TbItem tbItem, String desc,String itemParams) throws Exception;
 
    /**
     * @Description:查询商品规格参数列表
