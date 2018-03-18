@@ -1,7 +1,5 @@
 package com.taotao.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.common.pojo.EUDataGridModel;
@@ -22,7 +20,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -66,7 +63,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Value("${http.image.url}")
     private String imageUrl;
-
 
     @Override
     public TbItem getItemById(long id) {

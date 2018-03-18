@@ -28,4 +28,11 @@ public interface TbContentCategoryMapper {
     int updateByPrimaryKeySelective(TbContentCategory record);
 
     int updateByPrimaryKey(TbContentCategory record);
+
+    /**
+     * @Description:获取最大id
+     * @Author:WangYichao
+     * @Date:2018/2/12 17:33
+     */
+    int getMaxId();
 }

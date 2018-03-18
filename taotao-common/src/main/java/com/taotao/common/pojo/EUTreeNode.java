@@ -8,6 +8,7 @@ package com.taotao.common.pojo;
 public class EUTreeNode {
 
     private long id;
+    private long parentId;
     private String text;
     private String state;
 
@@ -33,5 +34,13 @@ public class EUTreeNode {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
     }
 }

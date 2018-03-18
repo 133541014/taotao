@@ -40,7 +40,7 @@
 	        <tr>
 	            <td>内容:</td>
 	            <td>
-	                <textarea style="width:800px;height:300px;visibility:hidden;" name="content"></textarea>
+	                <textarea style="width:800px;height:300px;visibility:visible;" name="content"></textarea>
 	            </td>
 	        </tr>
 	    </table>
