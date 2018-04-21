@@ -6,6 +6,7 @@ import com.taotao.vo.ItemVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TbItemMapper {
     int countByExample(TbItemExample example);
@@ -31,5 +32,11 @@ public interface TbItemMapper {
     int updateByPrimaryKey(TbItem record);
 
     List<ItemVO> getItemList();
+
+    /**
+     * 获取商品检索索引库信息
+     * @return
+     */
+    List<Map<String,Object>> getItemSearchMessage();
 
 }

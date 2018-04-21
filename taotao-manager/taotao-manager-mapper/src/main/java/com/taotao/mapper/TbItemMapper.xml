@@ -337,4 +337,17 @@
         tb_item ti
     LEFT JOIN tb_item_cat tic ON ti.cid = tic.id
   </select>
+
+  <select id="getItemSearchMessage" resultType="java.util.Map">
+    SELECT
+			item.id,
+			item.title,
+			item.sell_point,
+			item.price,
+			item.image,
+			cat.name as category_name
+		FROM
+			tb_item as item
+		LEFT JOIN tb_item_cat as cat ON item.cid = cat.id
+  </select>
 </mapper>
